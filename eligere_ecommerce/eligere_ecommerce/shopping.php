@@ -23,7 +23,7 @@ if(isset($_GET['delete_from_cart'])){
 
 ?>
 <html>
-<head>
+ <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image" href="./images/icon.jpg">
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -144,10 +144,11 @@ if(isset($_GET['delete_from_cart'])){
         .logout-button a:hover {
           /* Change the link text color on hover */
           color: #fff;
+
         }
          </style>
        <div class="row">
-            
+
             <div class="header-center">
                 <h5 class="display-3">
                     Welcome <?php echo $_SESSION['username']; ?> 
@@ -158,10 +159,12 @@ if(isset($_GET['delete_from_cart'])){
                     <img src="./images/logo.png" width="180px" height="80px" style="margin-left: 0;">
                     </div>
                    MENU
-                <ul>  
+                <ul> 
                  <li><a href="?page=home" class="btn btn-link menu-item">Home</a></li>
                  <li><a href="?page=myorder" class="btn btn-link menu-item">My Orders</a></li>
-                 
+                 <form action="search.php" method="get" class="sidebar-form">
+                   <input type="text" name="query" class="form-control" placeholder="Search...">
+                </form>
                 </ul>
                 <div class="sidebar-footer position-absolute w-99 bottom-0">
                 <p class="logout-button" onclick="return confirm('Are you sure you want to log out?')">
@@ -170,16 +173,17 @@ if(isset($_GET['delete_from_cart'])){
                 </div>
            </div>
            </aside>
+           
            <div class="col-15 offset-2 main-content">
            <?php if(isset($_GET['page'])){
                 if($_GET['page'] == 'home'){ ?>
                   <!--Load the Home Content--> 
                        <div class="row"> 
                             <div class="col-9">
-
+            
                                 <div class="container-fluid">
                                        <div class="row">
-                                        <?php
+                              <?php
 
                                $sql_get_items = "SELECT * FROM `items` WHERE `item_status`='A' order by items_id DESC";
                                $get_result = mysqli_query($conn, $sql_get_items); ?>
@@ -394,28 +398,30 @@ if(isset($_GET['delete_from_cart'])){
                     <div class="row">
                     
                     <?php
-                        $sql_get_user_order = "SELECT DISTINCT 
-                                                  o.order_ref_number
-                                                , pm.payment_method_desc
-                                                , o.payment_method
-                                                , op.order_phase_desc
-                                                , o.order_phase
-                                                , o.alternate_receiver
-                                                , o.alternate_address
-                                                , o.gcash_ref_num
-                                                , o.gcash_account_name
-                                                , o.gcash_account_number
-                                                , o.gcash_amount_sent
-                                             FROM `orders` as o
-                                             JOIN `payment_method` as pm
-                                               ON o.payment_method = pm.payment_method_id
-                                             JOIN `order_phase` as op
-                                               ON o.order_phase = op.order_phase_id
-                                            WHERE o.user_id = '$s_user_id' ";      
-                    $result_orders = mysqli_query($conn, $sql_get_user_order);
+                    $sql_get_user_order = "SELECT DISTINCT 
+                     o.order_ref_number
+                     , pm.payment_method_desc
+                     , o.payment_method
+                     , op.order_phase_desc
+                     , o.order_phase
+                     , o.alternate_receiver
+                     , o.alternate_address
+                     , o.gcash_ref_num
+                     , o.gcash_account_name
+                     , o.gcash_account_number
+                     , o.gcash_amount_sent
+                     FROM `orders` as o
+                     JOIN `payment_method` as pm
+                     ON o.payment_method = pm.payment_method_id
+                     JOIN `order_phase` as op
+                     ON o.order_phase = op.order_phase_id
+                     WHERE o.user_id='$s_user_id' ";
+                     $result_orders = mysqli_query($conn, $sql_get_user_order);
+                           
+                       
+                     while($rec = mysqli_fetch_assoc($result_orders)){ //first loop with only the order_reference_number ?>
                     
-                    
-                    while($rec = mysqli_fetch_assoc($result_orders)){ //first loop with only the order_reference_number ?>
+            
                      <div class="col-3">
                          <div class="card mt-3">
                              <h6 class="card-title mt-1 ms-1"><?php 
