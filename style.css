@@ -106,27 +106,21 @@ body {
 }
 
 .contactInfo ul li span{
-    color: #fff;
-    font-weight: 300;
-}
-
-.contactInfo.education li{
-    margin-bottom: 15px;
-}
-
-.contactInfo.education h5{
     color: #03a9f4;
-    font-weight: 500;
-}
-
-.contactInfo.education h4:nth-child(2){
-    color: #fff;
-    font-weight: 500;
-}
-
-.contactInfo.education h4{
-    color: #fff;
     font-weight: 300;
+}
+
+.qoute{
+    padding-top: 10px;
+   
+}
+.qoute .h4{
+    color:#03a9f4;
+}
+.qoute .p{
+    color:#fff;
+    font-size:small;
+
 }
 
 .contactInfo.language .percent{
@@ -149,8 +143,6 @@ body {
 
 
 
-
-
 .container .right_side {
     position: relative;
     background: #fff;
@@ -169,7 +161,8 @@ body {
     color: #003147;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 p{
@@ -179,24 +172,37 @@ p{
 .about .box{
     display: flex;
     flex-direction: row;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
-.about .box .year_company{
+.about .box .year_c{
     min-width: 150px;
+    margin: 10px;
 }
 
-.about .box .year_company h5{
+.about .box .year_c h5{
     text-transform: uppercase;
     color: #848c90;
     font-weight: 600;
+    margin: 10px;
 }
+
+.about.box.text {
+    margin-top: 0; /* add some space above the text */
+    margin-left: 20px;
+  }
 
 .about .box .text h4{
     text-transform: uppercase;
     color: #2a7da2;
     font-size: 16px;
+    margin: 10px;
 }
+.about.box.text p {
+    color: #848c90; /* grayish color */
+    font-weight: 300; /* light font weight */
+    margin: 0; /* remove margin */
+  }
 
 .skills .box{
     position: relative;
